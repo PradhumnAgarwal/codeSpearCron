@@ -1,6 +1,11 @@
 import fetch from 'node-fetch';
+const express = require('express')
+const app = express()
+const port = process.env.PORT || 4000;
 
-
+app.get('/', (req, res) => {
+  res.send('Cron Process is Running...')
+})
 const apiUrl = 'https://codespear-1qu9.onrender.com/';
 
 async function callApi() {
@@ -20,3 +25,6 @@ async function callApi() {
 setInterval(callApi, 13 * 60 * 1000);
 
 callApi();
+app.listen(port, () => {
+  console.log(`Cron app listening on port ${port}`)
+})
